@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update]
   def show
     @user = User.find(params[:id])
-    #@chapters = @user.chapters.paginate(page: params[:page])
+ 
   end
   def new
    @user = User.new

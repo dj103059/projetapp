@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-  # @chapter = current_user.chapters.build if signed_in?
+   @scene = current_user.scenes.build if signed_in?
   end
   def about
     @title = "about"

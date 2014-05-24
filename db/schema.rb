@@ -11,37 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524144432) do
-
-  create_table "anecdotes", force: true do |t|
-    t.string   "content"
-    t.integer  "chapter_id"
-    t.string   "theme"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "chapters", force: true do |t|
-    t.string   "title"
-    t.integer  "scene_id"
-    t.integer  "anecdote_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140524214334) do
 
   create_table "characters", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "relations", force: true do |t|
     t.integer  "scene_id"
+    t.integer  "character_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "scenes", force: true do |t|
     t.string   "content"
-    t.integer  "charac_id"
-    t.integer  "chapter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|

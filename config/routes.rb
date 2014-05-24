@@ -1,12 +1,26 @@
-ProjectApp::Application.routes.draw do
+Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :chapter, only: [:create, :destroy]
+  resources :relations, only: [:create, :destroy]
+  resources :scenes, only: [:new, :create, :destroy]
+  resources :characters, only: [:new, :create, :destroy] 
+   resources :relations, only: [:create, :destroy]
+
+
   root  'static_pages#home'
-  match '/about',   to: 'static_pages#about',   via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/indexscene',  to: 'scenes#index',            via: 'get'
+  match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/help',    to: 'static_pages#help',    via: 'get'
+  match '/about',   to: 'static_pages#about',   via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
+  match '/scene',   to: 'scenes#new',           via: 'get'
+  match '/character',   to: 'characters#new',           via: 'get'
+  match '/scene',   to: 'scenes#create',        via: 'post'
+  match '/character',   to: 'characters#create',           via: 'post'
+ 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
