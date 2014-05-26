@@ -1,5 +1,10 @@
- <div class="span8">
-      <ol class="microposts">
-        <%= render Scene.all %>
-      </ol>
-  </div>
+<% provide(:title, 'All Scene') %>
+<h1>All Scene</h1>
+
+<%= will_paginate @scenes %>
+
+<ul class="scenes">
+  <%= render @scenes %>
+</ul>
+
+<%= will_paginate @scenes %>

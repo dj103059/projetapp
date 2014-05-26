@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :scenes
   has_many :characters
+  has_many :anecdotes
+  has_many :chapters
   has_secure_password
   before_save { self.email = email.downcase }
   before_create :create_remember_token

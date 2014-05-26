@@ -1,0 +1,17 @@
+<% provide(:title, "Characters to Scenes") %>
+<h1>Characters to Scenes</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:relation, url: '/rltnChrtoSce') do |f| %>
+
+
+      <%= f.label :character %>
+      <%= f.select(:character_id, Character.all.map {|c| [ c.name, c.id ] }) %>
+    
+      <%= f.label :scene %>
+      <%= f.select(:scene_id, Scene.all.map {|c| [ c.content, c.id ] }) %>
+      <%= f.submit "Send", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

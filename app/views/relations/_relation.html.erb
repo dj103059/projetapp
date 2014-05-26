@@ -1,0 +1,9 @@
+<div>
+<% Character.find_all_by_id(relation.character_id).each do |n|%> 
+   <%= link_to n.name, relation.character %> 
+<% end %>
+<span> scene :</span>
+<%  Scene.find_all_by_id(relation.scene_id).each do |s|%> 
+  <%=link_to s.content[0..50]+"...", relation.scene %>
+<% end %>
+</div>

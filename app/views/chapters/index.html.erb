@@ -1,0 +1,10 @@
+<% provide(:title, 'All chapter') %>
+<h1>All chapter</h1>
+
+<%= will_paginate @chapters %>
+
+<ul class="chapters">
+  <%= render @chapters %>
+</ul>
+
+<%= will_paginate @chapters %>

@@ -8,9 +8,9 @@ class Character < ActiveRecord::Base
   end
 
   def play!(one_scene)
-    relationships.create!(scene_id: one_scene.id)
+    relations.create!(scene_id: one_scene.id)
   end
   def leave!(one_scene)
-    relationships.find_by(scene_id: one_scene.id).destroy
+    relations.find_by(scene_id: one_scene.id).destroy
   end
 end

@@ -9,26 +9,52 @@
   </aside>
 
   <div class="span8">
+    <% if Chapter.all.any? %>
+      <h3>Chapters (<%= Chapter.all.count %>)</h3>
+      <ol >
+        <%= render Chapter.all %>
+      </ol>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <aside class="span4">
+  </aside>
+  <div class="span8">
+    <% if Anecdote.all.any? %>
+      <h3>Anecdotes (<%= Anecdote.all.count %>)</h3>
+      <ol >
+        <%= render Anecdote.all %>
+      </ol>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <aside class="span4">
+  </aside>
+  <div class="span8">
     <% if Scene.all.any? %>
       <tr><h3>Scenes (<%= Scene.all.count %>)</h3></tr>
-      <ol class="microposts">
+      <ol >
         <tr><%= render Scene.all %></tr>
       </ol>
     <% end %>
   </div>
-
 </div>
+
 <div class="row">
   <aside class="span4">
   </aside>
   <div class="span8">
     <% if Character.all.any? %>
       <h3>Characters (<%= Character.all.count %>)</h3>
-      <ol class="microposts">
+      <ol >
         <%= render Character.all %>
       </ol>
     <% end %>
   </div>
 </div>
-Sarroch
+
+
 

@@ -1,3 +1,5 @@
-<li>
-  <span><%= character.name %></span>
-</li>
+<% if Relation.find_all_by_character_id(character.id).empty? %>
+  <li>
+   <%= link_to  character.name , character %>
+  </li>
+<% end %>

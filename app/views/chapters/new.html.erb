@@ -1,0 +1,14 @@
+<% provide(:title, "Chapter") %>
+<h1>Chapter</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:chapter, url: '/chapter') do |f| %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.submit "Send", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
