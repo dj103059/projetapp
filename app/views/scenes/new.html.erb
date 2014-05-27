@@ -10,9 +10,7 @@
 
       <%= f.label :character %>
       <%= f.select(:character_id, Character.all.map {|c| [ c.name, c.id ] }) %>
-    
-      <%= f.label :chapter %>
-      <%= f.select(:chapter_id, Chapter.all.map {|c| [ c.title, c.id ] }) %>
+   
       <%= f.submit "Send", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

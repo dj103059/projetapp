@@ -4,15 +4,18 @@
         <%= @chapter.title %>
       </h1>
       <br/>
-      <% if Scene.find_by_chapter_id(@chapter.id).nil? %>
-        <input type="button"  value="add scene" onclick="location.href='http://localhost:3000/indexscene'" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> 
+      <% if Scene.find_by_chapter_id(@chapter.id).blank? %>
       <% else %>
         <span>Scene :</span> 
          <%= render Scene.where(chapter_id: @chapter.id) %>
         <span> Character :</span> 
          <%= render Relation.where(scene_id: Scene.where(chapter_id: @chapter.id))%>
-      <input type="button"  value="add scene" onclick="location.href='http://localhost:3000/indexscene'" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> 
-      <input type="button"  value="add anecdote" onclick="location.href='http://localhost:3000/indexanecdote'" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> 
+     
+     <% end %>
+     <% if Anecdote.find_by_chapter_id(@chapter.id).blank? %>
+      <% else %>
+        <span>Anecdote :</span> 
+         <%= render Anecdote.where(chapter_id: @chapter.id) %>
      <% end %>
     
 </div>

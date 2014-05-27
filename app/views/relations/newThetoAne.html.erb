@@ -1,0 +1,17 @@
+<% provide(:title, "Theme to Anecdotes") %>
+<h1>Themes to Anecdotes</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:chapter, url: '/rltnThetoAne') do |f| %>
+
+
+      <%= f.label :theme %>
+      <%= f.select(:theme_id, Theme.all.map {|c| [ c.content, c.id ] }) %>
+    
+      <%= f.label :anecdote %>
+      <%= f.select(:anecdote_id, Anecdote.all.map {|c| [ c.content, c.id ] }) %>
+      <%= f.submit "Send", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

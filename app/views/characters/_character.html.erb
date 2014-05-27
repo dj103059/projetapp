@@ -1,5 +1,13 @@
 <% if Relation.find_all_by_character_id(character.id).empty? %>
+  <span> Character with no scene </span>
   <li>
    <%= link_to  character.name , character %>
   </li>
+  <% else %>
+  <span> Character </span>  
+   <%= link_to  character.name , character %> 
+   <span> with scene </span> 
+   <%= render partial: 'scenes/one_scene', 
+         locals: { 
+           toto: Scene.where(id: Relation.where(character_id: character.id).first.scene_id).first } %> 
 <% end %>

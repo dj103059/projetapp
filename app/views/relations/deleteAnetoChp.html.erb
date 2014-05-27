@@ -1,16 +1,16 @@
-<% provide(:title, "Scenes to Chapters") %>
-<h1>Scenes to Chapters</h1>
+<% provide(:title, "Anecdote to Chapters") %>
+<h1>Anecdotes to Chapters</h1>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(:chapter, url: '/rltnScetoChap') do |f| %>
+    <%= form_for(:chapter, url: '/deleteAnetoChp') do |f| %>
 
 
       <%= f.label :chapter %>
       <%= f.select(:chapter_id, Chapter.all.map {|c| [ c.title, c.id ] }) %>
     
-      <%= f.label :scene %>
-      <%= f.select(:scene_id, Scene.all.map {|c| [ c.content, c.id ] }) %>
+      <%= f.label :anecdote %>
+      <%= f.select(:anecdote_id, Anecdote.all.map {|c| [ c.content, c.id ] }) %>
       <%= f.submit "Send", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

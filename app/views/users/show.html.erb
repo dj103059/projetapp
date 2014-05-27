@@ -56,5 +56,18 @@
   </div>
 </div>
 
+<div class="row">
+  <aside class="span4">
+  </aside>
+  <div class="span8">
+    <% if Theme.all.any? %>
+      <h3>Themes (<%= Theme.all.count %>)</h3>
+      <ol >
+        <%= render Theme.all %>
+      </ol>
+    <% end %>
+  </div>
+</div>
+
 
 

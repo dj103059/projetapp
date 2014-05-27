@@ -1,5 +1,5 @@
 class ScenesController < ApplicationController
-
+  before_action :signed_in_user
   def index
     @scenes = Scene.paginate(page: params[:page])
   end
@@ -13,35 +13,52 @@ class ScenesController < ApplicationController
   end
 
   def createScetoChap
-   current_scene = Scene.find_by_id(params[:relation][:scene_id])
-   @chapter = Chapter.find_by_id(params[:relation][:chapter_id])
-   #if current_scene.chapter_id.blank?
-      current_scene.update_attributes(chapter_id: @chapter.id)
+   @scene = Scene.find_by_id(scene_params)
+   @chapter = Chapter.find_by_id(chapt_params)
+   if @scene.chapter_id.blank?      
+      @scene.update_attributes(chapter_id: @chapter.id)
+      flash[:success] = "Scene added!"
       redirect_to @chapter
-   #else
-    # redirect_to @chapter
-   #end
+   else
+     flash[:error] = "Scene no added!"
+     redirect_to @chapter
+   end
  end
 
 
  def create
      @scene = current_user.scenes.build(scene_params_content)
-     if @scene.save
-        flash[:success] = "scene created!"
-        current_scene=(@scene)
-        current_scene.update_attributes(scene_params_chapter)
-        current_scene.relations.create(scene_params_char)
-        redirect_to  current_user
-     else
-        render 'static_pages/home'
-     end
- end
+     if !scene_params_char.blank?
+       if @scene.save
+          flash[:success] = "scene created!"
+          current_scene=(@scene)
+          current_scene.relations.create(scene_params_char)
+          redirect_to  current_user
+       else
+          render 'root_path'
+        end
+    else
+        flash[:error] = "Create a Character first!!"
+       redirect_to root_path
+    end
+  end
  
  def edit
  end
 
   def destroy
-  end
+   @scene = Scene.find_by_id(scene_params)
+   @chapter = Chapter.find_by_id(chapt_params)
+   if @scene.chapter_id == @chapter.id      
+      @scene.update_attributes(chapter_id: nil)
+      flash[:success] = "Scene deleted!"
+      redirect_to @chapter
+   else
+     flash[:error] = "Scene no deleted!"
+     redirect_to @chapter
+   end
+ end
+ 
 
   private
 
@@ -54,5 +71,15 @@ class ScenesController < ApplicationController
     end
     def scene_params_chapter
       params.require(:scene).permit(:chapter_id)
+    end
+    
+    def chapt_params
+      params[:chapter][:chapter_id]
+    end
+     def scene_params
+      params[:chapter][:scene_id]
+    end
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
     end
 end

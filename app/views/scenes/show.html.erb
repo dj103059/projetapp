@@ -1,3 +1,9 @@
 <li>
-  <span>(<%= @scene.content%> <br/><span> Character :</span>  <%=render Relation.where(scene_id: @scene.id) %> <br> <span> Chapter :</span>  <%= render Chapter.find_by_id(@scene.chapter_id) %>)</span> 
+  <span><%= @scene.content%> <br/>
+  <span> Character :</span>  <%=render Relation.where(scene_id: @scene.id) %> <br>
+   <% if @scene.chapter_id.nil?%>
+   <% else %>
+         <span> Chapter :</span> 
+         <%= render Chapter.find_by_id(@scene.chapter_id) %>
+   <% end %>
 </li>

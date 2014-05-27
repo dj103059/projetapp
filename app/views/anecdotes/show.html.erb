@@ -1,9 +1,11 @@
-<div class="row">
-  <aside class="span4">
-    <section>
+<div>
       <h1>
         <%= @anecdote.content %>
       </h1>
-    </section>
-  </aside>
+    <% if Theme.find_by_anecdote_id(@anecdote.id).blank? %>
+    
+      <% else %>
+        <span>Theme :</span> 
+         <%= render Theme.where(anecdote_id: @anecdote.id) %>
+     <% end %>
  </div>

@@ -1,11 +1,14 @@
 class CharactersController < ApplicationController
-
+before_action :signed_in_user
+  
   def index
     @characters = Character.paginate(page: params[:page])
+    
   end
 
   def show
     @character = Character.find(params[:id])
+    
   end
 
   def create
@@ -24,5 +27,8 @@ class CharactersController < ApplicationController
 
     def character_params
       params.require(:character).permit(:name)
+    end
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
     end
 end
