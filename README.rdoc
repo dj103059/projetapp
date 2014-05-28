@@ -1,27 +1,34 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Choix d'implementation :
 
-Things you may want to cover:
+suite aux consignes , certaines implémentations ont été faites: 
 
-* Ruby version
+- Il n'existe qu'un seul utilisateur généré par bundle exec rake db:populate 
+, en effet , dans le doute d'une mauvaise compréhension de l'énnoncé , il n'y a pas de sign_up.
+le code du sign-up est présent mais pas utilisable. 
+donc avant d'aller sur le site , FAIRE LA COMMANDE : bundle exec rake db:populate
+l'email : admin@exemple.fr
+le password : foobar
 
-* System dependencies
+- Dans l'énoncé , il est écris "Votre app est un assistant d’ecriture de livre, 
+qui doit permettre a un utilisateur (a priori unique donc administrateur), 
+de creer et naviguer dans les enregistrements ". Suite a cela , le choix d'implémentation est le suivant :
+-pas de possibilité de supprimer ce que l'on a créer (juste creer et naviguer)
 
-* Configuration
+- Dans l'énoncé , il est écris "Anecdote: un texte qui a un sujet et un ou plusieurs theme (poursuite, romance, exploration, …)
+Scene: un recit (texte) qui implique un ou plusieurs personnage dans un lieu et un instant ou une periode"
+ Suite a cela , le choix d'implémentation est le suivant :
+- pour creer une Scene , on doit au minimum avoir creer un personnage 
+- pour creer une anecdote , on doit au minimum avoir creer un theme 
+en revanche , une fois cela fait , si vous voulez changer de personnage ou theme , 
+vous pouvez tout a fait enlever ou ajouter un theme /un personnage a votre gré.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Dans l'énoncé , il est écris "La page recapitulatives des personnes peut montrer une liste des personnes qui n’ont encore jamais ete utilisees,
+ et/ou indiquer pour chaque personne le premier chapitre ou elle apparait."
+ Suite a cela , le choix d'implémentation est le suivant :
+ un probléme survient : comment afficher un personnage qui a une scéne mais pas de chapitre? 
+ pour cela au lieu d'afficher le premier chapitre ou apparait le personnage , on affiche la premiére scéne ou apparait le personnage.
 
 
 Please feel free to use a different markup language if you do not plan to run
