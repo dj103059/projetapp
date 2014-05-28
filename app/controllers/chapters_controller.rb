@@ -1,6 +1,7 @@
 class ChaptersController < ApplicationController
  before_action :signed_in_user
   def index
+    @title = 'All Chapter'
     @chapters = Chapter.paginate(page: params[:page])
   end
 

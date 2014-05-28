@@ -2,6 +2,7 @@ class CharactersController < ApplicationController
 before_action :signed_in_user
   
   def index
+    @title = 'All Character'
     @characters = Character.paginate(page: params[:page])
     
   end

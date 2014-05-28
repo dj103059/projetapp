@@ -1,6 +1,8 @@
 class AnecdotesController < ApplicationController
 before_action :signed_in_user
+
   def index
+    @title = 'All Anecdote'
     @anecdotes = Anecdote.paginate(page: params[:page])
   end
 
@@ -9,9 +11,10 @@ before_action :signed_in_user
   end
 
   def createAnetoChap
+   if !anecdote_params_id.blank? and !chapt_params_id.blank?
    current_anectode = Anecdote.find_by_id(anecdote_params_id)
    @chapter = Chapter.find_by_id(chapt_params_id)
-   if current_anectode.chapter_id.blank?      
+   if current_anectode.chapter_id.blank? and     
       current_anectode.update_attributes(chapter_id: @chapter.id)
       flash[:success] = "Anecdote added!"
       redirect_to @chapter
@@ -19,20 +22,22 @@ before_action :signed_in_user
      flash[:error] = "Anecdote no added!"
      redirect_to @chapter
    end
+  else
+  flash[:error] = "Anecdote or Chapter empty!"
+     redirect_to root_path
  end
-
+end
   def create
-    @anecdote = current_user.anecdotes.build(anecdote_params)
     if !anecdote_params_them.blank?
-      current_theme = Theme.find_by_id(anecdote_params_them)
+      @anecdote = current_user.anecdotes.build(anecdote_params)
+      @theme = Theme.find_by_id(anecdote_params_them)
       if @anecdote.save 
-        current_anecdote=(@anecdote)
-        current_anecdote.update_attributes(theme_id: current_theme.id)
-        current_theme.update_attributes(anecdote_id: current_anecdote.id)
+        current_anecdote = @anecdote
+        @theme.update_attributes(anecdote_id: current_anecdote.id)
         flash[:success] = "Anecdote created!"
         redirect_to current_user
       else
-        flash[:error] = "Anecdote no created!"
+        flash[:error] = @anedote
         redirect_to root_path
       end
     else

@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20140527150727) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "theme_id"
     t.integer  "chapter_id"
   end
 

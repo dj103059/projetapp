@@ -1,6 +1,7 @@
 class ThemesController < ApplicationController
 before_action :signed_in_user
   def index
+    @title = 'All Theme'
     @themes = Theme.paginate(page: params[:page])
   end
 

@@ -1,4 +1,0 @@
-<%= form_for(current_character.relations.build(character_id: @scene.id)) do |f| %>
-  <div><%= f.hidden_field :character_id %></div>
-  <%= f.submit "ajout", class: "btn btn-large btn-primary" %>
-<% end %>

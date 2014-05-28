@@ -1,6 +1,7 @@
 class ScenesController < ApplicationController
   before_action :signed_in_user
   def index
+    @title = 'All Scene'
     @scenes = Scene.paginate(page: params[:page])
   end
 
@@ -27,21 +28,21 @@ class ScenesController < ApplicationController
 
 
  def create
-     @scene = current_user.scenes.build(scene_params_content)
-     if !scene_params_char.blank?
-       if @scene.save
-          flash[:success] = "scene created!"
-          current_scene=(@scene)
-          current_scene.relations.create(scene_params_char)
-          redirect_to  current_user
-       else
-          render 'root_path'
-        end
+    if scene_params_content.blank? or scene_params_char.blank?
+      flash[:error] = "invalid form !"
+      redirect_to '/scene'
     else
-        flash[:error] = "Create a Character first!!"
-       redirect_to root_path
+     @scene = current_user.scenes.build(scene_params_content)
+     if @scene.save
+        flash[:success] = "scene created!"
+        current_scene=(@scene)
+        current_scene.relations.create(scene_params_char)
+        redirect_to  current_user
+     else
+        render 'static_pages/home'
+     end
     end
-  end
+ end
  
  def edit
  end

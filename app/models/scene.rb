@@ -4,7 +4,7 @@ class Scene < ActiveRecord::Base
   has_many :relations, foreign_key: "scene_id", dependent: :destroy
   has_many :characters ,through: :relations, source: :character
   validates :content, presence: true, length: { maximum: 140 }
-
+  validates :user_id, presence: true
   def playedby?(one_character)
     relations.find_by(character_id: one_character.id)
   end

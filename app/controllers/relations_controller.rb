@@ -27,7 +27,7 @@ class RelationsController < ApplicationController
     redirect_to current_scene
    end
 
- def createChrtoSce
+ def createChrtoSce  
    current_scene = Scene.find_by_id(params[:relation][:scene_id])
    @character = Character.find_by_id(params[:relation][:character_id])
    if current_scene.playedby?(@character).blank?
